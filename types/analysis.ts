@@ -32,6 +32,7 @@ export type AnalysisErrorCode =
   | "AI_FAILED"
   | "INVALID_AI_RESPONSE"
   | "MISSING_JOB_DESCRIPTION"
+  | "MISSING_DATES"
   | "UNKNOWN";
 
 export type AnalysisError = {

@@ -120,14 +120,54 @@ export async function getAnalysisResult(
   | { ok: true; report: AnalysisReport }
   | { ok: false; error: { message: string } }
 > {
-  const report = getSessionReport(sessionId);
-  if (report) {
-    return { ok: true, report };
+  // Check if we already have a completed report
+  const existing = getSessionReport(sessionId);
+  if (existing) {
+    return {
+      ok: true,
+      report: existing,
+    };
   }
+
+  // Check if there's a recorded failure
+  const failure = getSessionFailure(sessionId);
+  if (failure) {
+    return {
+      ok: false,
+      error: {
+        message: failure.message,
+      },
+    };
+  }
+
+  // Get pending session and run analysis if needed
+  const pending = getPendingSession(sessionId);
+  if (!pending) {
+    return {
+      ok: false,
+      error: {
+        message: "Session expired. Please upload your resume again.",
+      },
+    };
+  }
+
+  // Run the analysis
+  const analysis = await analyzeResumeWithGemini(
+    pending.resumeText,
+    pending.jobDescription,
+    pending.targetRole,
+    pending.experienceLevel
+  );
+
+  if (!analysis.ok) {
+    failSession(sessionId, analysis.error.message, analysis.error.code);
+    return { ok: false, error: { message: analysis.error.message } };
+  }
+
+  // Store the completed session
+  completeSession(sessionId, analysis.data, pending.targetRole);
   return {
-    ok: false,
-    error: {
-      message: "Report not found. Please run a new analysis.",
-    },
+    ok: true,
+    report: { result: analysis.data, targetRole: pending.targetRole },
   };
 }

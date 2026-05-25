@@ -1,5 +1,5 @@
 import mammoth from "mammoth";
-import type { AnalysisError } from "@/types/analysis";
+import type { AnalysisError, AnalysisErrorCode } from "@/types/analysis";
 import { MIN_RESUME_CHARS } from "@/utils/constants";
 
 export type ParseResult =
@@ -31,6 +31,7 @@ function hasClearDates(text: string): boolean {
     /\b\d{4}\s*[–-]\s*\d{4}\b/,
     /\b\d{1,2}\/\d{2,4}\b/,
     /\b(?:\d{1,2}\s+)?(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\s*[-–to]{1,3}\s*(?:\d{1,2}\s+)?(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\s+\d{4}\b/i,
+    /\b(?:\d{1,2}\s+)?(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\s*[-–to]{1,3}\s*(?:Present|Current|Till Date|Now)\b/i,
   ];
   return datePatterns.some((pattern) => pattern.test(text));
 }
@@ -49,49 +50,49 @@ export async function parseResume(
       "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
     ) {
       rawText = await parseDocx(buffer);
-    } else {
-      return {
-        ok: false,
-        error: {
-          code: "UNSUPPORTED_FORMAT",
-          message: "Please upload a PDF or DOCX file.",
-        },
-      };
-    }
+     } else {
+       return {
+         ok: false,
+         error: {
+           code: "UNSUPPORTED_FORMAT" as AnalysisErrorCode,
+           message: "Please upload a PDF or DOCX file.",
+         },
+       };
+     }
 
     const text = normalizeText(rawText);
 
-    if (!text || text.length < MIN_RESUME_CHARS) {
-      return {
-        ok: false,
-        error: {
-          code: "EMPTY_RESUME",
-          message:
-            "We couldn't extract enough text from your resume. Try a different file or ensure it's not image-only.",
-        },
-      };
-    }
+     if (!text || text.length < MIN_RESUME_CHARS) {
+       return {
+         ok: false,
+         error: {
+           code: "EMPTY_RESUME" as AnalysisErrorCode,
+           message:
+             "We couldn't extract enough text from your resume. Try a different file or ensure it's not image-only.",
+         },
+       };
+     }
 
-    if (!hasClearDates(text)) {
-      return {
-        ok: false,
-        error: {
-          code: "MISSING_DATES",
-          message:
-            "Your resume text was extracted, but we could not detect clear employment date ranges. Please upload a resume with explicit timeline/date formatting so we can avoid making assumptions.",
-        },
-      };
-    }
+     if (!hasClearDates(text)) {
+       return {
+         ok: false,
+         error: {
+           code: "MISSING_DATES" as AnalysisErrorCode,
+           message:
+             "Your resume text was extracted, but we could not detect clear employment date ranges. Please upload a resume with explicit timeline/date formatting so we can avoid making assumptions.",
+         },
+       };
+     }
 
     return { ok: true, text };
-  } catch {
-    return {
-      ok: false,
-      error: {
-        code: "PARSE_FAILED",
-        message:
-          "We couldn't read your resume. Please try a different PDF or DOCX file.",
-      },
-    };
-  }
+   } catch {
+     return {
+       ok: false,
+       error: {
+         code: "PARSE_FAILED" as AnalysisErrorCode,
+         message:
+           "We couldn't read your resume. Please try a different PDF or DOCX file.",
+       },
+     };
+   }
 }

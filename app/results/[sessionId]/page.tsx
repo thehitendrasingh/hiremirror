@@ -2,13 +2,15 @@ import { PageShell } from "@/components/layout/page-shell";
 import { ResultsPageClient } from "@/features/results/results-page-client";
 
 type Props = {
-  params: { sessionId: string };
+  params: Promise<{ sessionId: string }>;
 };
 
-export default function ResultsPage({ params }: Props) {
+export default async function ResultsPage({ params }: Props) {
+  const { sessionId } = await params;
+
   return (
     <PageShell>
-      <ResultsPageClient sessionId={params.sessionId} />
+      <ResultsPageClient sessionId={sessionId} />
     </PageShell>
   );
 }
