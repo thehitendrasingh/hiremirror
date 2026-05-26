@@ -5,9 +5,54 @@ import {
   buildJobDescription,
   buildTargetRoleLabel,
   EXPERIENCE_LEVELS,
-  TECH_ROLE_TEMPLATES,
   type JdInputMode,
 } from "@/utils/tech-role-templates";
+
+const ROLE_CATEGORIES: { label: string; roles: { id: string; label: string }[] }[] = [
+  {
+    label: "Engineering",
+    roles: [
+      { id: "swe", label: "Software Engineer" },
+      { id: "ai-engineer", label: "AI Engineer" },
+      { id: "frontend", label: "Frontend Engineer" },
+      { id: "backend", label: "Backend Engineer" },
+      { id: "fullstack", label: "Full Stack Engineer" },
+      { id: "devops-sre", label: "DevOps / SRE" },
+      { id: "data-engineer", label: "Data Engineer" },
+      { id: "ml-engineer", label: "ML Engineer" },
+      { id: "em", label: "Engineering Manager" },
+      { id: "qa-engineer", label: "QA Engineer" },
+    ],
+  },
+  {
+    label: "Product",
+    roles: [
+      { id: "product-manager", label: "Product Manager (Technical)" },
+      { id: "product-manager-non-tech", label: "Product Manager" },
+      { id: "ai-product-manager", label: "AI Product Manager" },
+    ],
+  },
+  {
+    label: "Design",
+    roles: [
+      { id: "product-designer", label: "Product Designer" },
+      { id: "ui-ux-designer", label: "UI/UX Designer" },
+    ],
+  },
+  {
+    label: "Data & Analytics",
+    roles: [
+      { id: "data-analyst", label: "Data Analyst" },
+    ],
+  },
+  {
+    label: "Marketing & Strategy",
+    roles: [
+      { id: "marketing-manager", label: "Marketing Manager" },
+      { id: "solutions-architect", label: "Solutions / Cloud Architect" },
+    ],
+  },
+];
 
 type JdInputSectionProps = {
   mode: JdInputMode;
@@ -78,10 +123,14 @@ export function JdInputSection({
               onChange={(e) => onRoleChange(e.target.value)}
               className="w-full rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2.5 text-sm text-zinc-100 focus:border-indigo-500/50 focus:outline-none focus:ring-1 focus:ring-indigo-500/30"
             >
-              {TECH_ROLE_TEMPLATES.map((role) => (
-                <option key={role.id} value={role.id}>
-                  {role.label}
-                </option>
+              {ROLE_CATEGORIES.map((category) => (
+                <optgroup key={category.label} label={category.label}>
+                  {category.roles.map((role) => (
+                    <option key={role.id} value={role.id}>
+                      {role.label}
+                    </option>
+                  ))}
+                </optgroup>
               ))}
             </select>
           </label>

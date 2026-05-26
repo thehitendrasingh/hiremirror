@@ -7,6 +7,13 @@ export const ACCEPTED_MIME_TYPES = [
 ] as const;
 export const ACCEPTED_EXTENSIONS = [".pdf", ".docx"] as const;
 
+export const LOADING_STAGES = [
+  { label: "Parsing resume", emoji: "📄", message: "Extracting text and structure from your resume..." },
+  { label: "Matching role", emoji: "🎯", message: "Comparing your experience against the target role requirements..." },
+  { label: "Scoring signals", emoji: "📊", message: "Evaluating ownership, impact, and recruiter visibility signals..." },
+  { label: "Generating report", emoji: "✨", message: "Assembling your personalized recruiter intelligence report..." },
+] as const;
+
 export const LOADING_MESSAGES = [
   "Reviewing resume content for fit...",
   "Matching experience to the target role...",

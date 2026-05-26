@@ -26,6 +26,7 @@ export default function RootLayout({
     <html lang="en" className="dark">
       <body
         className={`${inter.variable} min-h-screen bg-black font-sans antialiased`}
+        suppressHydrationWarning
       >
         {children}
       </body>

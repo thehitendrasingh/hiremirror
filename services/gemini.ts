@@ -5,6 +5,7 @@ import {
 } from "@/prompts/recruiter-analysis";
 import { analysisResultSchema, type AnalysisResult } from "@/types/analysis";
 import type { AnalysisError } from "@/types/analysis";
+import { getRoleConfig, buildRoleContextBlock } from "@/lib/role-config";
 
 export type GeminiResult =
   | { ok: true; data: AnalysisResult }
@@ -57,11 +58,16 @@ async function callGemini(
     },
   });
 
+  // Resolve role config for recruiter psychology context
+  const roleConfig = getRoleConfig(targetRoleLabel);
+  const roleContextBlock = buildRoleContextBlock(roleConfig);
+
   const prompt = buildRecruiterAnalysisPrompt(
     resumeText,
     jobDescription,
     targetRoleLabel,
-    experienceLevel
+    experienceLevel,
+    roleContextBlock
   );
   const retryNote = strictRetry
     ? "\n\nPREVIOUS RESPONSE FAILED VALIDATION. Return JSON only with all required fields, exactly 3 hiring risks, 3-5 recruiterScan bullets with (Tag) prefixes."
