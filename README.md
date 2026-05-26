@@ -1,61 +1,444 @@
-# HireMirror
+# HireMirror AI
 
-**Find out why recruiters ignore your resume.**
+<div align="center">
 
-HireMirror is a PMF-validation MVP for hiring visibility intelligence — not a resume builder, ATS checker, or dashboard SaaS. It mirrors how recruiters perceive your application in ~7 seconds.
+### AI Recruiter Intelligence Platform
 
-## Flow
+> Find out why recruiters ignore your resume.
 
-1. **Landing** — Emotional hook + sample insights
-2. **Upload** — Resume (PDF/DOCX) + job description (no login)
-3. **Analysis loader** — Premium loading experience while Gemini analyzes
-4. **Results** — Single-scroll narrative: core diagnosis, 7-second scan, top 3 risks, one rewrite
+HireMirror helps job seekers understand how recruiters actually perceive their resumes — including interview probability, hidden hiring risks, recruiter first impressions, and career positioning.
 
-## Tech stack
+🌐 Live Demo: https://hiremirrorai.vercel.app/
 
-- Next.js 14 App Router · TypeScript · Tailwind · shadcn-style UI · Framer Motion
-- Google Gemini (structured JSON)
-- pdf-parse · mammoth
-- In-memory session store (no DB)
+</div>
 
-## Getting started
+---
 
-```bash
+# The Problem
+
+Most resume tools focus on:
+
+* ATS scores
+* keyword matching
+* templates
+* formatting
+
+But candidates still ask:
+
+> “I’ve applied to 200 jobs. Why am I still not getting interviews?”
+
+That’s the real problem.
+
+Traditional resume tools optimize documents.
+
+HireMirror analyzes:
+
+# recruiter perception.
+
+---
+
+# What Makes HireMirror Different?
+
+| Traditional Resume Tools | HireMirror                        |
+| ------------------------ | --------------------------------- |
+| ATS scores               | Interview probability             |
+| Keyword stuffing         | Recruiter psychology              |
+| Resume templates         | Hiring visibility intelligence    |
+| Formatting optimization  | Recruiter perception analysis     |
+| Generic AI rewriting     | Strategic positioning insights    |
+| Resume creation          | Interview conversion intelligence |
+
+HireMirror is not another AI resume builder.
+
+It is:
+
+# AI Recruiter Intelligence
+
+---
+
+# Core Product Philosophy
+
+The future of hiring tools is moving from:
+
+```text id="rm009"
+Resume Creation
+```
+
+toward:
+
+```text id="rm010"
+Hiring Visibility Intelligence
+```
+
+The goal is not:
+
+> “Make resumes prettier.”
+
+The goal is:
+
+> “Understand why recruiters are ignoring you.”
+
+---
+
+# Key Features
+
+## Interview Probability Score
+
+Predicts likelihood of interview conversion based on:
+
+* recruiter visibility
+* leadership signaling
+* JD alignment
+* measurable impact
+* recruiter clarity
+* role fit
+
+Unlike ATS tools, the score is:
+
+* contextual
+* explainable
+* recruiter-focused
+
+---
+
+## Recruiter 7-Second Scan
+
+Simulates what recruiters notice in the first few seconds.
+
+Examples:
+
+* leadership visibility
+* strategic ownership
+* business impact clarity
+* execution-heavy positioning
+* generic AI phrasing
+
+---
+
+## Core Diagnosis Engine
+
+Explains the primary reason a resume may lose recruiter attention.
+
+Example:
+
+> “Your resume signals strong execution but weak strategic ownership.”
+
+---
+
+## Strengths Analysis
+
+Balanced recruiter-style evaluation showing:
+
+* positive recruiter signals
+* role alignment
+* market strengths
+* transferable advantages
+
+---
+
+## Top Hiring Risks
+
+Highlights:
+
+* weak ownership signals
+* generic phrasing
+* poor business impact visibility
+* recruiter confusion
+* positioning mismatch
+
+---
+
+## Improvement Suggestions
+
+Actionable recommendations to improve:
+
+* interview probability
+* recruiter clarity
+* strategic signaling
+* role alignment
+
+---
+
+## Smart Rewrite Example
+
+Transforms weak resume bullets into:
+
+* measurable
+* recruiter-friendly
+* business-impact oriented statements
+
+---
+
+## Multi-Role Support
+
+Role-specific recruiter intelligence for:
+
+* Product Managers
+* Software Engineers
+* Data Analysts
+* UX Designers
+* Marketing Managers
+
+Each role uses different recruiter psychology and evaluation logic.
+
+---
+
+## PDF Hiring Visibility Reports
+
+Generate elegant downloadable reports containing:
+
+* interview probability
+* recruiter insights
+* strengths
+* risks
+* rewrite suggestions
+* hiring visibility analysis
+
+---
+
+# Product Experience
+
+HireMirror is intentionally designed to feel:
+
+* emotionally intelligent
+* recruiter-authentic
+* premium
+* psychologically sharp
+* brutally honest but constructive
+
+The UX avoids:
+
+* ATS dashboard clutter
+* enterprise HR aesthetics
+* generic SaaS complexity
+
+---
+
+# User Flow
+
+```text id="rm011"
+Landing Page
+↓
+Upload Resume
+↓
+Paste Job Description
+↓
+Select Role
+↓
+AI Recruiter Analysis
+↓
+Interview Probability
+↓
+Core Diagnosis
+↓
+Strengths Analysis
+↓
+Recruiter 7-Second Scan
+↓
+Top Hiring Risks
+↓
+Improvement Suggestions
+↓
+Smart Rewrite
+↓
+Download PDF Report
+```
+
+---
+
+# AI Analysis Pipeline
+
+```text id="rm012"
+Resume Upload
+↓
+Resume Parsing
+↓
+Text Normalization
+↓
+JD Matching
+↓
+Recruiter Simulation
+↓
+Hiring Risk Detection
+↓
+Structured AI Output
+↓
+UI Rendering
+```
+
+---
+
+# Tech Stack
+
+## Frontend
+
+* Next.js 16 (App Router)
+* TypeScript
+* Tailwind CSS
+* shadcn/ui
+* Framer Motion
+
+## Backend
+
+* Next.js Route Handlers
+* Server Actions
+
+## AI
+
+* Gemini API
+* Structured JSON generation
+* Recruiter simulation prompting
+
+## Resume Parsing
+
+* pdf-parse
+* mammoth
+
+## Deployment
+
+* Vercel
+
+---
+
+# Architecture
+
+The project follows a modular feature-based architecture.
+
+```bash id="rm013"
+/features
+/components
+/services
+/prompts
+/schemas
+/types
+/utils
+```
+
+Core architecture principles:
+
+* scalable
+* modular
+* reusable
+* production-ready
+* PMF-focused
+
+---
+
+# Local Development
+
+## Clone Repository
+
+```bash id="rm014"
+git clone https://github.com/thehitendrasingh/hiremirror.git
+```
+
+---
+
+## Install Dependencies
+
+```bash id="rm015"
 npm install
-cp .env.example .env.local
-# Add GEMINI_API_KEY to .env.local
+```
+
+---
+
+## Setup Environment Variables
+
+Create:
+
+```bash id="rm016"
+.env.local
+```
+
+Add:
+
+```env id="rm017"
+GEMINI_API_KEY=your_api_key_here
+```
+
+---
+
+## Run Development Server
+
+```bash id="rm018"
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000).
+---
 
-## Deploy (Vercel)
+## Build Production Version
 
-1. Push to GitHub
-2. Import in Vercel
-3. Set `GEMINI_API_KEY` in project environment variables
-4. Deploy
-
-## Project structure
-
-```
-/app              — Routes (landing, analyze, loading, results)
-/components       — Reusable UI (layout, motion, shadcn)
-/features         — Feature modules (landing, analyze, results)
-/lib              — Session store, validation
-/services         — Resume parsing, Gemini
-/prompts          — Recruiter-authentic AI prompts
-/types            — Zod schemas & TypeScript types
-/utils            — Constants, cn helper
+```bash id="rm019"
+npm run build
 ```
 
-## Environment variables
+---
 
-| Variable | Required | Description |
-|----------|----------|-------------|
-| `GEMINI_API_KEY` | Yes | Google AI Studio API key |
-| `GEMINI_MODEL` | No | Default: `gemini-2.5-flash` |
+# Product Vision
 
-## License
+HireMirror is evolving from:
 
-Private — MVP startup product.
+```text id="rm020"
+resume analysis
+```
+
+into:
+
+```text id="rm021"
+AI career intelligence
+```
+
+Future expansion areas:
+
+* recruiter trust scoring
+* hiring visibility funnels
+* interview conversion coaching
+* career positioning intelligence
+* AI recruiter simulation
+* market benchmarking
+* personalized career strategy
+
+---
+
+# Why We Built This
+
+We realized something important:
+
+People do not actually care about:
+
+* ATS scores
+* resume templates
+* keyword percentages
+
+They care about:
+
+# interviews.
+
+HireMirror exists to expose the invisible hiring signals blocking candidates from getting interview calls.
+
+---
+
+# Founder
+
+Built by Hitendra Singh.
+
+Focused on:
+
+* AI products
+* hiring intelligence
+* recruiter psychology
+* product-led growth
+* emotionally intelligent UX
+
+---
+
+# License
+
+MIT License
+
+---
+
+# Final Philosophy
+
+> “The future of hiring tools is not resume creation.
+> It is hiring visibility intelligence.”
